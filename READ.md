@@ -8,7 +8,7 @@
 </table>
 
 ## Demo
-Here is a working live demo :  
+Here is a working live demo :  https://alikhalid2020.github.io/Akan-name-/
 ## Mobile support
 The Akan naming application is compatible with devices of all sizes and all OS's, and consistent improvements are being made.
 ### Development

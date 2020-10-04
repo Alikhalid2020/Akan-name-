@@ -18,8 +18,8 @@ var submission = function() {
       "Kwame",
     ];
     let femaleNames = [
-      "Akosua",
-      " Adwoa",
+     "Akosua",
+     " Adwoa",
      "Abenaa",
      "Akua",
      "Yaa",

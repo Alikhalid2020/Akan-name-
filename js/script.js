@@ -24,7 +24,7 @@ var submission = function() {
      "Akua",
      "Yaa",
      "Afua",
-     "Ama"
+     "Ama",
     ];
     let month = parseInt(document.getElementById("month").value);
     let year = parseInt(document.getElementById("year").value);

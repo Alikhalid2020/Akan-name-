@@ -15,7 +15,7 @@ var submission = function() {
       "Kwaku",
       "Yaw",
       "Kofi",
-      "Kwame"
+      "Kwame",
     ];
     let femaleNames = [
       "Akosua",

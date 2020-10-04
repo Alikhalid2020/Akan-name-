@@ -8,26 +8,53 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
-    <div class="container">
-        <p><strong>Akan name</strong>
-         </p>
-        <form name="myForm" id="form" class="inputForm" onsubmit="return allFunctions()">
-            <p>Please enter your date of birth</p>
-            <div id="inputError"></div><br>
+     <div class="container">
+                 <div class="overlay">
+                      <h1 class="text-center akan">Akan Names</h1>
+                      <hr class="my-4">
+                      <img src="./css/images/amevi-wisdom-wiUl_NyafcY-unsplash.jpg" alt="picture" class="rounded-circle" height="120">
+                      <p class="p-text">The Akan people of Ghana name their children after the day of the week
+                        they were born.</p>
+                        <p class="p-text">These "day names" have further meanings concerning the soul and character of the person.</p>
+                        <p class="q-text text-center">What's your akan name?</p><br>
+                    </div>
+                </div>
+              </div>
+              <br>
+             <aside>
+          
             
-            DATE :<input type="text" value="" name="day" id="day" class="inputs" placeholder="DD" > <br>
-            MONTH :<input type="text" value="" name="month" id="month" class="inputs" placeholder="MM" ><br>
-            YEAR :<input type="text" value="" name="year" id="year" class="inputs" placeholder="YY" ><br>
-           
-            <p id="the-gender"></p>
-            <div id="genderError"></div>
-            <input type="radio" name="gender" value="male" id="male" class="gnd">Male</br>
-            <input type="radio" name="gender" value="female" id="female">Female <br>
-
-            <button type="submit" name="submit" id="btn" value="submit">Submit</button>
-            <button type="reset" name="reset" id="btn" value="submit">Reset</button>
-
+            <div id="aside">
+            <form>
+                <div>
+                    <div class="row">
+                      <div class=" col-md">
+                        <p id="output"></p>
+                    <label><strong>Your first Name.</strong></label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter" required>
+                      </div>
+                      <div class="col-md">
+                    <label><strong>Year of Birth</strong></label>
+                    <input type="number" class="form-control" id="year" placeholder="Enter the year." required min="1900" max="2020" >
+                    </div>
+                    <label><strong>Month of Birth</strong></label>
+                  <input type="number" class="form-control" id="month" placeholder="Enter the month" required min="1"   max="12"><br>
+                        
+                    <label><strong>Day of Birth</strong></label>
+                    <input type="number" class="form-control" id="day" placeholder="Enter the day" required min="1"
+                        max="31"><br>
+                
+                <div class="gender">
+                    <label><strong>GENDER</strong></label><br>
+                    <input type="radio" name="gender" id="male" value="male" checked> Male
+                    <input type="radio" name="gender" id="female" value="female"> Female
+                </div>
+            <div>
+            <a onclick="submission()" class="btn btn-outline-info btn-lg">Submit</a>
+            <button type="reset" class="btn btn-outline-info btn-lg">Reset</button>
+          </div>
         </form>
+      </aside>
        <div id="success"></div>
     </div>
     <script src="js/script.js"></script>

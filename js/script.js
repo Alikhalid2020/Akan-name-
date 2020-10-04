@@ -1,75 +1,195 @@
-var submission = function() {
-    const daysOfTheWeek =[
-        "Sundays",
-        "Monday",
-        "Tuesday",
-        "Wensday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-    ];
-    const maleName =[
-        "Kwasi",
-        "kwadwo",
-        "Kwaku",
-        "Yaw",
-        "Kofi",
-        "Kwame",
-    ];
-    const femaleName =[
-        "Akasou",
-        "Adwoa",
-        "Abenaa",
-        "Akua",
-        "Yaa",
-        "Afua",
-        "Ama",
-    ];
-    let month = parseInt(document.getElementById("month").value);
-  let year = parseInt(document.getElementById("year").value);
-  let day = parseInt(document.getElementById("day").value);
-  let name =(document.getElementById("name").value);
-  let date0fbirth = new Date(year + "/" + month + "/" + day);
-  let results = date0fbirth.getDay();
-  let output = document.getElementById("output");
-  male = document.getElementById("male")
-  female = document.getElementById("female")
-  if (month =="" && year =="" && day =="" && name=="") {
-    alert("Please Enter you credentials");
-    return false;
+var nameList = [
+  {
+      Sunday: "Kwasi",
+      Monday: "Kwadwo",
+      Tuesday: "Kwabena",
+      Wednesday: "Kwaku",
+      Thursday: "Yaw",
+      Friday: "Kofi",
+      Saturday: "Kwame"
+  },
+  {
+      Sunday: "Akosua",
+      Monday: "Adwoa",
+      Tuesday: "Abenaa",
+      Wednesday: "Akua",
+      Thursday: "Yaa",
+      Friday: "Afua",
+      Saturday: "Ama"
   }
-//   if (month == null || month== "", day == null || day == "", year== null || year == "", name == null || name == "") {
-//     alert("Please Fill All Required Field");
-//     return false;
-//   }
-// }
- if (year < 0) {
-    output.style.background ="red"
-    output.style.color= "white"
-    output.innerHTML = "Hey! " + name + " please enter a valid year! "
-}
-else if ((month < 1) || (month > 31)) {
-    output.style.background ="red"
-    output.style.color= "white"
-    output.innerHTML = "Hey! " + name + " please enter a valid month! "
-}
- else if (day < 0 || day > 31) {
-    output.style.background ="red"
-    output.style.color= "white"
-    output.innerHTML = "Hey! " + name + " please enter a valid day! "
-}
-//  var valid = (year>0 && (month > 0 && month <= 12) (day > 0 && day <32))
-//  if(valid == false){
-//    alert("No Input received!!");
-//  }
-  if(male.checked && year > 0 && month > 0 && month < 12 && day > 0 && day < 32) {
-    output.style.background ="lime"
-      output.innerHTML = "Hey! " + name + " you were born on a " + daysOfTheWeek[results] + " and your Akan name is " + maleNames[results];
-  }
-   else if(female.checked && year > 0 && month > 0 && month < 12 && day > 0 && day < 32) {
-    output.style.background ="lime"
-    output.style.background ="red"
-    output.innerHTML = "Hey! " + name + " you were born on a " + daysOfTheWeek[results] + " and your Akan name is " + femaleNames[results];
-}
-};
+];
 
+var weekDays = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday"
+];
+
+
+function validateForm() {
+  var day = document.getElementById("day").value;
+  var month = document.getElementById("month").value;
+  var year = document.getElementById("year").value;
+  var gender = document.getElementsByName("gender");
+  var i = 0;
+  var formValid = false;
+
+  if (day == "" || day == null) {
+      document.getElementById("inputError").innerHTML = "Day is required";
+      document.getElementById("inputError").style.color = "red";
+      document.getElementById("inputError").style.fontSize = "30px";
+      return false;
+  } else {
+      if (!isNaN(day)) {
+          if (day <= 0 || day > 31) {
+              document.getElementById("inputError").innerHTML = "Day is Invalid";
+              document.getElementById("inputError").style.color = "red";
+
+              return false;
+          }
+      } else {
+          document.getElementById("inputError").innerHTML = "Day is Empty";
+          document.getElementById("inputError").style.color = "red";
+          return false;
+      }
+  }
+  //validate month
+  if (month == "" || month == null) {
+      document.getElementById("inputError").innerHTML = "Month is required";
+      document.getElementById("inputError").style.color = "red";
+      return false;
+  } else {
+      if (!isNaN(month)) {
+          if (month <= 0 || month > 31) {
+              document.getElementById("inputError").innerHTML = "Month is Invalid";
+              document.getElementById("inputError").style.color = "red";
+              return false;
+          }
+      } else {
+          document.getElementById("inputError").innerHTML = "Month is Empty";
+          document.getElementById("inputError").style.color = "red";
+          return false;
+      }
+  }
+
+  
+  if (year == "" || year == null) {
+      document.getElementById("inputError").innerHTML = "Year is Empty";
+      document.getElementById("inputError").style.color = "red";
+      return false;
+  } else {
+      if (!isNaN(year)) {
+          if (year <= 0 || year > 2020) {
+              document.getElementById("inputError").innerHTML = "Year is empty";
+              document.getElementById("inputError").style.color = "red";
+              return false;
+          }
+      } else {
+          document.getElementById("inputError").innerHTML = "Year is Invalid";
+          document.getElementById("inputError").style.color = "red";
+          return false;
+      }
+  }
+  
+  while (!formValid && i < gender.length) {
+      if (gender[i].checked) formValid = true;
+      var genderValue = gender[i].value;
+      i++;
+  }
+  if (!formValid) {
+      document.getElementById("the-gender").innerHTML = "Please select your gender";
+      document.getElementById("the-gender").style.color = "red";
+      document.getElementById("the-gender").style.fontSize = "20px";
+
+      return false;
+  }
+
+  var userDetails = {
+      myDate: day,
+      myMonth: month,
+      myYear: year,
+      myGender: genderValue
+  };
+
+  var details = {
+      userDetails: userDetails,
+      formValid: formValid
+  };
+  return details;
+}
+
+function getDayOfWeek() {
+  var userInputs = validateForm();
+  userDetails = userInputs.userDetails;
+
+  mdate = userDetails.myDate;
+  mmonth = userDetails.myMonth;
+  mYear = userDetails.myYear;
+
+  var a = Math.floor((14 - mmonth) / 12);
+  var y = mYear - a;
+  var m = mmonth + 12 * a - 2;
+  dayOfWeek = Math.abs(mdate + y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(mYear / 400) + Math.floor((31 * m) / 12)) % 7;
+  
+  var the_day = weekDays[dayOfWeek];
+
+
+  return the_day;
+}
+
+
+function findName() {
+  var userInputs = validateForm();
+  var day = getDayOfWeek();
+
+  userDetails = userInputs.userDetails;
+
+  mdate = userDetails.myDate;
+  mgender = userDetails.myGender;
+
+  if (mgender === "male") {
+      var akanNameObj = nameList[0];
+      for (var key in akanNameObj) {
+          if (akanNameObj.hasOwnProperty(key)) {
+              if (key === day) {
+                  akanName = akanNameObj[key];
+              }
+          }
+      }
+  } else if (mgender === "female") {
+      var akanNameObj = nameList[1];
+      for (var key in akanNameObj) {
+          if (akanNameObj.hasOwnProperty(key)) {
+              if (key === day) {
+                  akanName = akanNameObj[key];
+              }
+          }
+      }
+  }
+
+  return akanName;
+}
+
+
+function printName() {
+  alert("Your Akan name is " + akanName);
+  return false;
+}
+
+function allFunctions() {
+  var userInputs = validateForm();
+  isValid = userInputs.formValid;
+  if (!isValid) {
+      validateForm();
+      return false;
+  } else {
+      getDayOfWeek();
+      findName();
+      printName();
+      return false;
+  }
+}

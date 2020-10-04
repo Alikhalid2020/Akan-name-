@@ -6,7 +6,7 @@ var submission = function() {
       "Wednesday",
       "Thursday",
       "Friday",
-      "Saturday"
+      "Saturday",
     ];
     let maleNames = [
       "Kwasi",
